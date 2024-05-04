@@ -74,3 +74,21 @@ CLOSED: [2024-05-05 Sun 00:53]
 我的第四篇博客
 
 *** headline2
+** DONE 如何创建新的git仓库
+CLOSED: [2024-05-05 Sun 01:50]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 如何创建新的git仓库
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-05 Sun 01:50]
+:END:
+
+** 设置用户信息:
+*** 0.1).配置用户名和邮箱
+**** 安装完git之后,要做的第一件事就是设置你的用户名和邮件地址.
+#+BEGIN_SRC shell
+  git config --global user.name "username" 
+  git config --global user.email "example@qq.com"
+
+  git config --list #查看config配置
+#+END_SRC
