@@ -60,3 +60,15 @@ CLOSED: [2024-04-30 Tue 05:26]
 
 *** headline3
 **** title3
+** DONE my-forth-blog
+CLOSED: [2024-05-05 Sun 00:53]
+:PROPERTIES:
+:EXPORT_FILE_NAME: my-forth-blog
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-05 Sun 00:53]
+:END:
+
+*** headline1
+**** title1
+我的第四篇博客
