@@ -93,7 +93,7 @@ CLOSED: [2024-05-05 Sun 01:50]
 	git config --list #查看config配置
       #+END_SRC
 
-2. 生成SSH key:
+2. 配置SSH key:
    1. 进入.ssh文件夹
       #+BEGIN_SRC
        cd ~/.ssh/
@@ -104,13 +104,52 @@ CLOSED: [2024-05-05 Sun 01:50]
 	ssh-keygen -t rsa -C "example@qq.com"
       #+END_SRC
 
-   3. 获取SSH key: 根据命令行提示,获取以ssh-rsa的字符串(包括ssh-rsa),按回车键生成SSH Key(秘钥)
+   3. 获取SSH key:
+      - 根据命令行提示,获取以ssh-rsa的字符串(包括ssh-rsa),按回车键生成SSH Key(秘钥)
 
-3. SSH key生成的路径一般为~/.ssh下,打开id_rsa.pub,进行全选复制内容.
+   4. 复制SSH key秘钥:
+      - SSH key生成的路径一般为~/.ssh下,打开id_rsa.pub,进行全选复制内容.
 
-4. 登录github账号添加ssh key(将第四部的内容粘贴上去),SSH key的位置为(settings-->SSH and GPG keys-->new SSH key)
+3. 复制公钥至github:
+   - 登录github账号添加ssh key(将步骤2.4的内容粘贴上去),SSH key的位置为(settings-->SSH and GPG keys-->new SSH key)
 
-5. 检测是否添加成功(本地终端输入下列内容,然后输入yes就好了)
+4. 检测是否添加成功(本地终端输入下列内容,然后输入yes就好了)
    #+BEGIN_SRC
      ssh -T git@github.com
    #+END_SRC
+
+*** 二).初始化仓库
+
+1.初始化本地仓库：
+#+BEGIN_SRC
+git init
+#+END_SRC
+
+2.添加文件到仓库中：
+#+BEGIN_SRC
+git add .
+#+END_SRC
+
+3.提交你的更改到本地仓库：
+#+BEGIN_SRC
+git commit -m "first commit"
+#+END_SRC
+
+
+4.如果你还没有远程仓库,需要在远程(例如GitHub)上创建一个仓库
+- 4.1.在github上新建仓库:
+  - 获取仓库地址:https://github.com/chaiguolong/git_test.git
+#  - 在github上获取token,代替密码(是用经典的token,不是细粒度token),具体见下面获取token教程.
+- 4.2.本地仓库操作:
+  - 将默认分支替换为main(因为在2020年将默认分支由master切换为main)
+    #+BEGIN_SRC
+	git branch -M main
+    #+END_SRC
+  - 将本地仓库的更改推送到远程仓库:
+    #+BEGIN_SRC
+	git remote add origin https://github.com/chaiguolong/git_test.git
+    #+END_SRC
+  - 将本地仓库推送至远程仓库
+    #+BEGIN_SRC
+	git push -u origin main
+    #+END_SRC
