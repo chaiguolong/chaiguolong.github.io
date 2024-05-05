@@ -82,13 +82,35 @@ CLOSED: [2024-05-05 Sun 01:50]
 :LOGBOOK:
 - State "DONE"       from "TODO"       [2024-05-05 Sun 01:50]
 :END:
+*** 一.设置用户信息
+1. 配置用户名和邮箱
+   1. 安装完git之后,要做的第一件事就是设置你的用户名和邮件地址.
+      #+BEGIN_SRC
+	git config --global user.name "username" 
 
-** 设置用户信息:
-*** 0.1).配置用户名和邮箱
-**** 安装完git之后,要做的第一件事就是设置你的用户名和邮件地址.
-#+BEGIN_SRC shell
-  git config --global user.name "username" 
-  git config --global user.email "example@qq.com"
+	git config --global user.email "example@qq.com"
 
-  git config --list #查看config配置
-#+END_SRC
+	git config --list #查看config配置
+      #+END_SRC
+
+2. 生成SSH key:
+   1. 进入.ssh文件夹
+      #+BEGIN_SRC
+       cd ~/.ssh/
+      #+END_SRC
+
+   2. 生成秘钥
+      #+BEGIN_SRC
+	ssh-keygen -t rsa -C "example@qq.com"
+      #+END_SRC
+
+   3. 获取SSH key: 根据命令行提示,获取以ssh-rsa的字符串(包括ssh-rsa),按回车键生成SSH Key(秘钥)
+
+3. SSH key生成的路径一般为~/.ssh下,打开id_rsa.pub,进行全选复制内容.
+
+4. 登录github账号添加ssh key(将第四部的内容粘贴上去),SSH key的位置为(settings-->SSH and GPG keys-->new SSH key)
+
+5. 检测是否添加成功(本地终端输入下列内容,然后输入yes就好了)
+   #+BEGIN_SRC
+     ssh -T git@github.com
+   #+END_SRC
