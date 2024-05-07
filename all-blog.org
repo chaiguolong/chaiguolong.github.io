@@ -74,6 +74,7 @@ CLOSED: [2024-05-05 Sun 00:53]
 我的第四篇博客
 
 *** headline2
+
 ** DONE 如何创建新的git仓库
 CLOSED: [2024-05-05 Sun 01:50]
 :PROPERTIES:
@@ -153,3 +154,170 @@ git commit -m "first commit"
     #+BEGIN_SRC
 	git push -u origin main
     #+END_SRC
+
+*** 1.[和test是shell的内部命令,而[[是shell的关键字.
+** DONE shell 脚本的疑难解惑
+CLOSED: [2024-05-07 Tue 17:51]
+:PROPERTIES:
+:EXPORT_FILE_NAME: shell 脚本的疑难解惑
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-07 Tue 17:51]
+:END:
+
+*** 1.shell -z和-n的使用区别
+- -n: 字符串长度不等于0为真,助记符:no zero
+- -z: 字符串长度等于0为真,助记符:zero
+
+*** 2.git误上传了不需要上传的文件夹
+一.当我们需要删除暂存区或分支上的文件,但本地又需要使用,只是不希望
+这个文件被版本控制,可以使用:
+#+BEGIN_SRC
+  git rm -r --cached 文件夹或文件名
+  git commit -m "delete remote somefile"
+  git push origin HEAD:当前分支(通常就是git push)
+#+END_SRC
+
+二.当我们需要删除暂存区或分支上的文件,同时工作区也不需要这个文件了
+可以使用:
+#+BEGIN_SRC
+  git rm file_path
+  git commit -m "delete somefile"
+  git push
+#+END_SRC
+
+*** 3.bash内建命令和关键字的区别
+- 1.内建命令值得就是包含在Bash工具包中的命令.
+- 2.关键字的意思就是保留字.
+
+对于shell来说关键字具有特殊的含义,
+并且用来构建shell语法结构.比如:"for","while","do",和"!"都是关键字.
+与内建命令相似的是:关键字也是Bash的骨干部分,但是与内建命令不同的是,
+关键字本身并不是一个命令,而是一个比较大的命令结构的一部分.
+
+
+
+** DONE shell脚本中单中括号和双中括号的区别
+CLOSED: [2024-05-07 Tue 18:49]
+:PROPERTIES:
+:EXPORT_FILE_NAME: shell脚本中单中括号和双中括号的区别
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-07 Tue 18:49]
+:END:
+
+*** 1.shell脚本中单中括号和双中括号的区别
+**** 1.概述:
+在Bash中比较变量时,我们通常交替使用单括号([])和双括号([[]]).
+例如,我们可以在检查3是否等于3时使用表达式[3 -eq 3]或者[\[3 -eq 3]\]
+两者都将成功比较,那么它们之间有什么区别呢?
+在本教程中,我们将讨论Bash中单括号和双括号之间的区别.
+**** 2.主要区别
+在本节中,我们将简要讨论单括号和双括号之间的主要区别.
+- 2.1单括号
+  [是shell的内置命令,在Unix和Linux中始终可用于计算表达式.
+  它仍然存在是为了向后兼容和POSIX合规性.
+  让我们使用type命令验证[是shell的内置命令
+  #+BEGIN_SRC
+    $ type [
+    [ is a shell builtin
+  #+END_SRC
+  [是test内置命令的替代命令.我们可以互换使用它们:
+  #+BEGIN_SRC
+    $ [ 3 -eq 3 ] && echo "Numbers are eqal"
+    Numbers are eqal
+    $ test 3 -eq 3 && echo "Numbers are eqal"
+    Numbers are eqal
+  #+END_SRC
+  [和test之间的唯一区别是我们必须使用]来包围比较.
+- 2.2双括号
+  双括号[[]]是在Korn Shell中作为增强功能引入的,可以更轻松地在
+  shell脚本的测试中使用.我们可以将其视为单括号的边界替代方案.
+  它可以在Bash和zsh灯许多shell中使用.但是,双括号不符合POSIX标准.
+  [[是关键字.我们使用type命令来检查它:
+  #+BEGIN_SRC
+    $ type [[
+    [[ is a shell keyword
+  #+END_SRC
+**** 3.其它差异
+在本节中,我们将讨论单括号和双括号的其他区别.
+- 3.1比较运算符
+  可以将比较运算符和双括号一起使用.让我们使用小于运算符(<)进行字符串比较
+  #+BEGIN_SRC
+    $ [[1 < 2]]&& echo "1 is less than 2"
+    1 is less than 2
+  #+END_SRC
+  在这里,我们使用小于运算符检查1是否小于2.比较成功.但是,使用单括号而不是
+  使用双括号就会产生语法错误:
+  #+BEGIN_SRC
+    $ [1 < 2] && echo "1 is less than 2"
+    bash: 2: No such file or directory
+  #+END_SRC
+  在这种情况下,Bash将<运算符视为文件重定向运算符.因此,我们必须在<运算符之前使用转义字符(\),
+  以便在单括号内成功进行比较:
+  #+BEGIN_SRC
+    $ [ 1 \< 2 ] && echo "1 is less than 2"
+    1 is less than 2
+  #+END_SRC
+  现在,使用单括号就比较成功了.
+  同样,我们必须在大于运算符(>)之前使用转义字符来进行单括号内的字符串比较.
+  整数比较运算符(例如-eq,-ne,-gt,-lt,-ge和-le)的用法对于两者是是相同的.
+- 3.2布尔运算符
+- 3.3分组表达式
+- 3.4模式匹配
+- 3.5常用表达
+- 3.6分词
+**** 4.结论
+
+** TODO SHELL比较运算符总结
+:PROPERTIES:
+:EXPORT_FILE_NAME: shell比较运算符总结
+:END:
+** TODO 运维人员常用的150个命令
+:PROPERTIES:
+:EXPORT_FILE_NAME: 运维人员常用的150个命令
+:END:
+** TODO linux运维常用脚本
+:PROPERTIES:
+:EXPORT_FILE_NAME: linux运维常用脚本
+:END:
+** DONE 如何给普通用户添加sudo权限
+CLOSED: [2024-05-08 Wed 00:40]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 如何给普通用户添加sudo权限
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-08 Wed 00:40]
+:END:
+
+*** linux用户添加sudo权限:
+1.切换到root用户下,方法为直接在命令行输入:su,然后输入密码
+#+BEGIN_SRC
+  $ su
+  passwd:
+#+END_SRC
+2.添加sudoers文件的写权限
+sudoers文件默认是只读的,对root来说也是,因此需先添加sudoer文件的写权限,执行下面的命令:
+#+BEGIN_SRC
+  chmod u+w /etc/sudoers
+#+END_SRC
+3.编辑sudoers文件,执行下面的命令
+#+BEGIN_SRC
+  vi /etc/sudoers 
+#+END_SRC
+找到这行root  ALL=(ALL)  ALL,在他下面添加dream  ALL=(ALL)  ALL(这里dream是你的用户名)
+根据需要可以选择下面四行中的一行:
+#+BEGIN_SRC
+  youuser  ALL=(ALL)  ALL
+  %youuser  ALL=(ALL)  ALL
+  youuser  ALL=(ALL)  ALL  NOPASSWD:  ALL
+  %youuser  ALL=(ALL)  ALL  NOPASSWD:  ALL
+#+END_SRC
+第一行:允许用户youuser执行sudo命令(需要输入密码).
+第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).
+第三行:允许用户youuser执行sudo命令,并且在执行的时候不需要输入密码.
+第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不需要输入密码.
+4.撤销sudoers文件的写权限
+#+BEGIN_SRC
+  chmod u-w /etc/sudoers
+#+END_SRC
