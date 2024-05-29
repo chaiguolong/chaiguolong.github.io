@@ -4,76 +4,13 @@
 #+hugo_custom_front_matter: :toc true
 #+hugo_code_fence: nil
 #+STARTUP: logdrawer
+#+startup: overview
 #+OPTIONS: author:nil
+#+OPTIONS: \n:t
 
 
 
 * Blog Ideas
-** DONE my-first-blog
-CLOSED: [2024-04-29 Mon 05:43]
-:PROPERTIES:
-:EXPORT_FILE_NAME: my-first-blog
-:END:
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2024-04-29 Mon 05:43]
-:END:
-
-*** headline1
-**** title1
-
-*** headline2
-**** title2
-
-*** headline3
-**** title3
-** DONE my-third-blog
-CLOSED: [2024-04-30 Tue 01:43]
-:PROPERTIES:
-:EXPORT_FILE_NAME: my-third-blog
-:END:
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2024-04-30 Tue 01:43]
-:END:
-
-*** headline1
-**** title1
-这是我的第三篇博客
-
-*** headline2
-
-*** headline3
-** DONE my-second-blog
-CLOSED: [2024-04-30 Tue 05:26]
-:PROPERTIES:
-:EXPORT_FILE_NAME: my-second-blog
-:END:
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2024-04-30 Tue 05:26]
-:END:
-
-*** headline1
-**** title1
-我的第二篇博客
-
-*** headline2
-**** title2
-
-*** headline3
-**** title3
-** DONE my-forth-blog
-CLOSED: [2024-05-05 Sun 00:53]
-:PROPERTIES:
-:EXPORT_FILE_NAME: my-forth-blog
-:END:
-:LOGBOOK:
-- State "DONE"       from "TODO"       [2024-05-05 Sun 00:53]
-:END:
-
-*** headline1
-**** title1
-我的第四篇博客
-
-*** headline2
 
 ** DONE 如何创建新的git仓库
 CLOSED: [2024-05-05 Sun 01:50]
@@ -84,78 +21,75 @@ CLOSED: [2024-05-05 Sun 01:50]
 - State "DONE"       from "TODO"       [2024-05-05 Sun 01:50]
 :END:
 *** 一.设置用户信息
-1. 配置用户名和邮箱
-   1. 安装完git之后,要做的第一件事就是设置你的用户名和邮件地址.
-      #+BEGIN_SRC
-	git config --global user.name "username" 
+**** 1. 配置用户名和邮箱
+***** 安装完git之后,要做的第一件事就是设置你的用户名和邮件地址.
+#+BEGIN_SRC
+git config --global user.name "username" 
 
-	git config --global user.email "example@qq.com"
+git config --global user.email "example@qq.com"
 
-	git config --list #查看config配置
-      #+END_SRC
+git config --list #查看config配置
+#+END_SRC
 
-2. 配置SSH key:
-   1. 进入.ssh文件夹
-      #+BEGIN_SRC
-       cd ~/.ssh/
-      #+END_SRC
+**** 2. 配置SSH key:
+1) 进入.ssh文件夹
+    #+BEGIN_SRC
+    cd ~/.ssh/
+    #+END_SRC
 
-   2. 生成秘钥
-      #+BEGIN_SRC
-	ssh-keygen -t rsa -C "example@qq.com"
-      #+END_SRC
+2) 生成秘钥
+    #+BEGIN_SRC
+    ssh-keygen -t rsa -C "example@qq.com"
+    #+END_SRC
 
-   3. 获取SSH key:
-      - 根据命令行提示,获取以ssh-rsa的字符串(包括ssh-rsa),按回车键生成SSH Key(秘钥)
+3) 获取SSH key: 根据命令行提示,获取以ssh-rsa的字符串(包括ssh-rsa),按回车键生成SSH Key(秘钥)
 
-   4. 复制SSH key秘钥:
-      - SSH key生成的路径一般为~/.ssh下,打开id_rsa.pub,进行全选复制内容.
+4) 复制SSH key秘钥: SSH key生成的路径一般为~/.ssh下,打开id_rsa.pub,进行全选复制内容.
 
-3. 复制公钥至github:
+**** 3. 复制公钥至github:
    - 登录github账号添加ssh key(将步骤2.4的内容粘贴上去),SSH key的位置为(settings-->SSH and GPG keys-->new SSH key)
 
-4. 检测是否添加成功(本地终端输入下列内容,然后输入yes就好了)
+**** 4. 检测是否添加成功(本地终端输入下列内容,然后输入yes就好了)
    #+BEGIN_SRC
      ssh -T git@github.com
    #+END_SRC
 
 *** 二).初始化仓库
 
-1.初始化本地仓库：
-#+BEGIN_SRC
-git init
-#+END_SRC
+**** 1.初始化本地仓库：
+    #+BEGIN_SRC
+    git init
+    #+END_SRC
 
-2.添加文件到仓库中：
-#+BEGIN_SRC
-git add .
-#+END_SRC
+**** 2.添加文件到仓库中：
+    #+BEGIN_SRC
+    git add .
+    #+END_SRC
 
-3.提交你的更改到本地仓库：
-#+BEGIN_SRC
-git commit -m "first commit"
-#+END_SRC
+**** 3.提交你的更改到本地仓库：
+    #+BEGIN_SRC
+    git commit -m "first commit"
+    #+END_SRC
 
-
-4.如果你还没有远程仓库,需要在远程(例如GitHub)上创建一个仓库
+**** 4.如果你还没有远程仓库,需要在远程(例如GitHub)上创建一个仓库
 - 4.1.在github上新建仓库:
   - 获取仓库地址:https://github.com/chaiguolong/git_test.git
 #  - 在github上获取token,代替密码(是用经典的token,不是细粒度token),具体见下面获取token教程.
 - 4.2.本地仓库操作:
-  - 将默认分支替换为main(因为在2020年将默认分支由master切换为main)
+  1) 将默认分支替换为main(因为在2020年将默认分支由master切换为main)
     #+BEGIN_SRC
 	git branch -M main
     #+END_SRC
-  - 将本地仓库的更改推送到远程仓库:
+  2) 将本地仓库的更改推送到远程仓库:
     #+BEGIN_SRC
 	git remote add origin https://github.com/chaiguolong/git_test.git
     #+END_SRC
-  - 将本地仓库推送至远程仓库
+  3) 将本地仓库推送至远程仓库
     #+BEGIN_SRC
 	git push -u origin main
     #+END_SRC
 
-*** 1.[和test是shell的内部命令,而[[是shell的关键字.
+
 ** DONE shell 脚本的疑难解惑
 CLOSED: [2024-05-07 Tue 17:51]
 :PROPERTIES:
@@ -170,16 +104,14 @@ CLOSED: [2024-05-07 Tue 17:51]
 - -z: 字符串长度等于0为真,助记符:zero
 
 *** 2.git误上传了不需要上传的文件夹
-一.当我们需要删除暂存区或分支上的文件,但本地又需要使用,只是不希望
-这个文件被版本控制,可以使用:
+**** 一.当我们需要删除暂存区或分支上的文件,但本地又需要使用,只是不希望这个文件被版本控制,可以使用:
 #+BEGIN_SRC
   git rm -r --cached 文件夹或文件名
   git commit -m "delete remote somefile"
   git push origin HEAD:当前分支(通常就是git push)
 #+END_SRC
 
-二.当我们需要删除暂存区或分支上的文件,同时工作区也不需要这个文件了
-可以使用:
+**** 二.当我们需要删除暂存区或分支上的文件,同时工作区也不需要这个文件了,可以使用:
 #+BEGIN_SRC
   git rm file_path
   git commit -m "delete somefile"
@@ -195,6 +127,54 @@ CLOSED: [2024-05-07 Tue 17:51]
 与内建命令相似的是:关键字也是Bash的骨干部分,但是与内建命令不同的是,
 关键字本身并不是一个命令,而是一个比较大的命令结构的一部分.
 
+*** 4.curl 一些选项的解释
+    - -s参数将不输出错误和进度信息
+    - -o参数将服务器的回应保存成文件
+
+*** 6.update和upgrade的区别
+    - update:命令只会获得系统上所有包的最新信息,并不会下载或者安装任何一个包.
+    - upgrade:命令来把这些包下载和升级到最新版本.
+*** 5.Linux shell 中$() ` `，${}，$[] $(())，[ ] (( )) [[ ]]作用与区别
+**** 1.$( )与` `(反引号)都是用来做命令替换用(commandsubstitution)的.
+**** 2.${var}和$var是用来变量替换的
+**** 3.$[]和$(())是用来数学运算的.
+** DONE 如何给普通用户添加sudo权限
+CLOSED: [2024-05-08 Wed 00:40]
+:PROPERTIES:
+:EXPORT_FILE_NAME: 如何给普通用户添加sudo权限
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-08 Wed 00:40]
+:END:
+
+*** 1.切换到root用户下,方法为直接在命令行输入:su,然后输入密码
+#+begin_src 
+ $ su
+ passwd:
+#+end_src
+*** 2.添加sudoers文件的写权限(sudoers文件默认是只读的,对root来说也是,因此需先添加sudoer文件的写权限)执行下面的命令:
+#+begin_src 
+chmod u+w /etc/sudoers
+#+end_src
+*** 3.编辑sudoers文件,执行下面的命令
+#+BEGIN_SRC
+ vi /etc/sudoers 
+#+END_SRC
+**** 找到这行root  ALL=(ALL)  ALL,在他下面添加dream  ALL=(ALL)  ALL(这里dream是你的用户名),根据需要可以选择下面四行中的一行:
+#+begin_src 
+ youuser  ALL=(ALL)  ALL
+ %youuser  ALL=(ALL)  ALL
+ youuser  ALL=(ALL)  ALL  NOPASSWD:  ALL
+ %youuser  ALL=(ALL)  ALL  NOPASSWD:  ALL
+#+end_src
+第一行:允许用户youuser执行sudo命令(需要输入密码).
+第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).
+第三行:允许用户youuser执行sudo命令,并且在执行的时候不需要输入密码.
+第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不需要输入密码.
+*** 4.撤销sudoers文件的写权限
+    #+BEGIN_SRC
+    chmod u-w /etc/sudoers
+    #+END_SRC
 
 
 ** DONE shell脚本中单中括号和双中括号的区别
@@ -206,118 +186,270 @@ CLOSED: [2024-05-07 Tue 18:49]
 - State "DONE"       from "TODO"       [2024-05-07 Tue 18:49]
 :END:
 
-*** 1.shell脚本中单中括号和双中括号的区别
-**** 1.概述:
-在Bash中比较变量时,我们通常交替使用单括号([])和双括号([[]]).
-例如,我们可以在检查3是否等于3时使用表达式[3 -eq 3]或者[\[3 -eq 3]\]
-两者都将成功比较,那么它们之间有什么区别呢?
-在本教程中,我们将讨论Bash中单括号和双括号之间的区别.
-**** 2.主要区别
+*** 1.概述:
+在Bash中比较变量时,我们通常交替使用单括号([])和双括号([[]]).例如,我们可以在检
+查3是否等于3时使用表达式[3 -eq 3]或者[\[3 -eq 3]\]两者都将成功比较,那么它们之
+间有什么区别呢?在本教程中,我们将讨论Bash中单括号和双括号之间的区别.
+*** 2.主要区别
 在本节中,我们将简要讨论单括号和双括号之间的主要区别.
-- 2.1单括号
-  [是shell的内置命令,在Unix和Linux中始终可用于计算表达式.
-  它仍然存在是为了向后兼容和POSIX合规性.
-  让我们使用type命令验证[是shell的内置命令
-  #+BEGIN_SRC
-    $ type [
+**** 2.1单括号
+  [是shell的内置命令,在Unix和Linux中始终可用于计算表达式.它仍然存在是为了向后
+  兼容和POSIX合规性.
+***** [和test之间的唯一区别是我们必须使用]来包围比较.
+***** 让我们使用type命令验证[是shell的内置命令
+  #+BEGIN_SRC shell
+    type [
     [ is a shell builtin
   #+END_SRC
-  [是test内置命令的替代命令.我们可以互换使用它们:
-  #+BEGIN_SRC
-    $ [ 3 -eq 3 ] && echo "Numbers are eqal"
-    Numbers are eqal
-    $ test 3 -eq 3 && echo "Numbers are eqal"
-    Numbers are eqal
-  #+END_SRC
-  [和test之间的唯一区别是我们必须使用]来包围比较.
-- 2.2双括号
-  双括号[[]]是在Korn Shell中作为增强功能引入的,可以更轻松地在
-  shell脚本的测试中使用.我们可以将其视为单括号的边界替代方案.
-  它可以在Bash和zsh灯许多shell中使用.但是,双括号不符合POSIX标准.
-  [[是关键字.我们使用type命令来检查它:
-  #+BEGIN_SRC
-    $ type [[
-    [[ is a shell keyword
-  #+END_SRC
-**** 3.其它差异
-在本节中,我们将讨论单括号和双括号的其他区别.
-- 3.1比较运算符
-  可以将比较运算符和双括号一起使用.让我们使用小于运算符(<)进行字符串比较
-  #+BEGIN_SRC
-    $ [[1 < 2]]&& echo "1 is less than 2"
-    1 is less than 2
-  #+END_SRC
-  在这里,我们使用小于运算符检查1是否小于2.比较成功.但是,使用单括号而不是
-  使用双括号就会产生语法错误:
-  #+BEGIN_SRC
-    $ [1 < 2] && echo "1 is less than 2"
-    bash: 2: No such file or directory
-  #+END_SRC
-  在这种情况下,Bash将<运算符视为文件重定向运算符.因此,我们必须在<运算符之前使用转义字符(\),
-  以便在单括号内成功进行比较:
-  #+BEGIN_SRC
-    $ [ 1 \< 2 ] && echo "1 is less than 2"
-    1 is less than 2
-  #+END_SRC
-  现在,使用单括号就比较成功了.
-  同样,我们必须在大于运算符(>)之前使用转义字符来进行单括号内的字符串比较.
-  整数比较运算符(例如-eq,-ne,-gt,-lt,-ge和-le)的用法对于两者是是相同的.
-- 3.2布尔运算符
-- 3.3分组表达式
-- 3.4模式匹配
-- 3.5常用表达
-- 3.6分词
-**** 4.结论
 
-** TODO SHELL比较运算符总结
-:PROPERTIES:
-:EXPORT_FILE_NAME: shell比较运算符总结
-:END:
+  [是test内置命令的替代命令.我们可以互换使用它们:
+  #+BEGIN_SRC shell
+    [ 3 -eq 3 ] && echo "Numbers are eqal"
+    Numbers are eqal
+  #+END_SRC
+  #+begin_src shell
+    test 3 -eq 3 && echo "Numbers are eqal"
+    Numbers are eqal
+  #+end_src
+**** 2.2双括号
+  双括号[[]]是在Korn Shell中作为增强功能引入的,可以更轻松地在shell脚本的测试中
+  使用.我们可以将其视为单括号的边界替代方案.它可以在Bash和zsh灯许多shell中使用.
+  但是,双括号不符合POSIX标准.
+***** [[是关键字.我们使用type命令来检查它:
+  #+BEGIN_SRC bash
+  type [[
+  [[ is a shell keyword
+  #+END_SRC
+
+*** 3.其它差异
+在本节中,我们将讨论单括号和双括号的其他区别.
+**** 3.1比较运算符
+***** 可以将比较运算符和双括号一起使用.让我们使用小于运算符(<)进行字符串比较
+    #+begin_src bash
+	[[1 < 2]]&& echo "1 is less than 2"
+	is less than 2
+    #+end_src
+***** 在这里,我们使用小于运算符检查1是否小于2.比较成功.但是,使用单括号而不是使用双括号就会产生语法错误:
+    #+begin_src bash
+	[1 < 2] && echo "1 is less than 2"
+	Bash: 2: No such file or directory
+    #+end_src
+***** 在这种情况下,Bash将<运算符视为文件重定向运算符.因此,我们必须在<运算符之前使用转义字符(\),以便在单括号内成功进行比较:
+    #+begin_src bash
+	$ [ 1 \< 2 ] && echo "1 is less than 2"
+	1 is less than 2
+    #+end_src
+***** 现在,使用单括号就比较成功了.同样,我们必须在大于运算符(>)之前使用转义字符来进行单括号内的字符串比较.整数比较运算符(例如-eq,-ne,-gt,-lt,-ge和-le)的用法对于两者是是相同的.
+**** 3.2布尔运算符
+***** 使用双括号进行逻辑运算时,我们必须使用&&运算符进行逻辑与运算,并使用进行||运算符进行逻辑或运算.
+#+begin_src bash
+[[ 3 -eq 3 && 4 -eq 4 ]] && echo "Numbers are equal"
+: Numbers are equal
+#+end_src
+
+#+RESULTS:
+
+***** 但是,使用单括号时,我们必须分别使用-o和-a测试运算符逻辑或和逻辑与运算
+***** 让我们重复上次使用单括号进行的比较
+#+begin_src bash
+[ 3 -eq 3 -a 4 -eq 4 ] && echo "Numbers are eqal"
+: Numbers are eqal
+#+end_src
+***** 对比再次成功.但由于单括号,我们使用-a而不是&&
+
+**** 3.3分组表达式
+***** *我们可以使用括号将表达式分组在双括号内*,分组的原因之一可能是更容易阅读表达式
+#+begin_src bash
+  [[ 3 -eq 3 && (2 -eq 2 && 1 -eq 1) ]] && echo "Parentheses can be used"
+#+end_src
+
+#+RESULTS:
+: Parentheses can be used
+
+**** 3.4模式匹配
+**** 3.6分词
+**** 3.5常用表达
+*** 4.结论
+
+# *** 1.[和test是shell的内部命令,而[[是shell的关键字.
+
+
+
+
 ** TODO 运维人员常用的150个命令
 :PROPERTIES:
 :EXPORT_FILE_NAME: 运维人员常用的150个命令
 :END:
+
 ** TODO linux运维常用脚本
 :PROPERTIES:
 :EXPORT_FILE_NAME: linux运维常用脚本
 :END:
-** DONE 如何给普通用户添加sudo权限
-CLOSED: [2024-05-08 Wed 00:40]
+** TODO 使用org-mode的一些小技巧
 :PROPERTIES:
-:EXPORT_FILE_NAME: 如何给普通用户添加sudo权限
+:EXPORT_FILE_NAME: 使用org-mode的一些小技巧
+:END:
+** DONE Bash反引号,$()和${} 的区别
+CLOSED: [2024-05-22 Wed 16:33]
+:PROPERTIES:
+:EXPORT_FILE_NAME: bash反引号-和-的区别
 :END:
 :LOGBOOK:
-- State "DONE"       from "TODO"       [2024-05-08 Wed 00:40]
+- State "DONE"       from "TODO"       [2024-05-22 Wed 16:33]
 :END:
 
-*** linux用户添加sudo权限:
-1.切换到root用户下,方法为直接在命令行输入:su,然后输入密码
-#+BEGIN_SRC
-  $ su
-  passwd:
-#+END_SRC
-2.添加sudoers文件的写权限
-sudoers文件默认是只读的,对root来说也是,因此需先添加sudoer文件的写权限,执行下面的命令:
-#+BEGIN_SRC
-  chmod u+w /etc/sudoers
-#+END_SRC
-3.编辑sudoers文件,执行下面的命令
-#+BEGIN_SRC
-  vi /etc/sudoers 
-#+END_SRC
-找到这行root  ALL=(ALL)  ALL,在他下面添加dream  ALL=(ALL)  ALL(这里dream是你的用户名)
-根据需要可以选择下面四行中的一行:
-#+BEGIN_SRC
-  youuser  ALL=(ALL)  ALL
-  %youuser  ALL=(ALL)  ALL
-  youuser  ALL=(ALL)  ALL  NOPASSWD:  ALL
-  %youuser  ALL=(ALL)  ALL  NOPASSWD:  ALL
-#+END_SRC
-第一行:允许用户youuser执行sudo命令(需要输入密码).
-第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).
-第三行:允许用户youuser执行sudo命令,并且在执行的时候不需要输入密码.
-第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不需要输入密码.
-4.撤销sudoers文件的写权限
-#+BEGIN_SRC
-  chmod u-w /etc/sudoers
-#+END_SRC
+*** 1.命令替换
+**** 命令替换有两种方式:
+- 反引号
+- $()
+
+反引号和$()的作用相同,用于命令替换,即完成引用命令的执行,
+将其结果替换出来,与变量替换差不多.(简单说就是先运行里面的命令)
+
+#+begin_src bash
+  echo `date  +%Y-%m-%d-%H`
+  #或
+  echo $(date +%Y-%m-%d-%H)
+#+end_src
+
+#+RESULTS:
+| 2024-05-22-15 |
+| 2024-05-22-15 |
+
+在shell脚本中建议使用$(),原因主要有两个:
+- (1) 反引号与单引号外形相似,容易混淆.
+- (2) 在多层次的符合替换中,内层反引号需要转义,而$()比较直观.
+
+*** 2.变量替换
+**** 2.1直接变量替换
+一般情况下,$var与${var}并没有区别,但用${}会比较精确的界定变量名的名称范围,
+比方说:
+#+begin_src bash
+  AB="I am AB"
+  A="dablelv"
+  echo $AB
+#+end_src
+
+#+RESULTS:
+: I am AB
+
+原本是打算先将$A的结果替换出来,然后再补一个B字母于其后,但在命令行上,
+真正的结果却是只会替换变量名称为AB的值.若使用${}就没有问题了.
+#+begin_src bash
+  AB="I am AB"
+  A="dablelv"
+  echo ${A}B
+#+end_src
+
+#+RESULTS:
+: dablelvB
+
+**** 2.2特殊变量替换
+${}除了直接替换变量内容,还有一些字符串变量的特殊功能.
+假设我们定义了一个字符串变量为:
+#+begin_src bash
+  file='/dir1/dir2/dir3/my.file.txt'
+#+end_src
+
+- 字符串提取
+  字符串提取可以使用${:}和${::}.
+  1. ${var:n}
+     若n为正数,n从0开始,表示在变量var中提取第n个字符到末尾的所有
+     字符.若n为负数,提取字符串最后面n的绝对值个字符,使用时在冒号
+     后面加空格或一个算术表达式或整个num加上括号,如${var: -2},
+     ${var:1-3}或${var:(-2)}均表示提取最后两个字符.
+     #+begin_src bash
+       file='/dir1/dir2/dir3/my.file.txt'
+       # 提取第一个字符及其后面的所有字符:
+       # dir1/dir2/dir3/my.file.txt
+       echo ${file:1}
+       # 提取最后3个字符,注意冒号后面添加一个空格:txt
+       echo ${file: -3}
+       # 提取最后3个字符,冒号后米娜不需要添加空格:txt
+       echo ${file:1-4}
+       # 提取最后3个字符,冒号后面不需要添加空格:txt
+       echo ${file:(-3)}
+     #+end_src
+
+     #+RESULTS:
+     | dir1/dir2/dir3/my.file.txt |
+     | txt                        |
+     | txt                        |
+     | txt                        |
+
+  2. ${var:n1:n2}
+     ${var:n1:n2}用于提取下标n1开始后面n2个字符,其中下标n1与n2
+     从0开始.如果长度n2为0,结果为空.
+     #+begin_src bash
+       file='/dir1/dir2/dir3/my.file.txt'
+       # 提取最左边的5个字符
+       echo ${file:0:5}
+       # 提取从第5个字符开始右边的连续5个字符:/dir2
+       echo ${file:5:5}
+     #+end_src
+
+     #+RESULTS:
+     | /dir1 |
+     | /dir2 |
+
+- 字符串替换
+  ${var/pattern/pattern}表示将var字符串第一个匹配的pattern替换为
+  另一个pattern.不改变原有变量.
+  #+begin_src bash
+    file='/dir1/dir2/dir3/my.file.txt'
+    # 将第一个dir替换为path: /path1/dir2/dir3/my.file.txt
+    echo ${file/dir/path}
+    # 将全部dir替换为path:/path1/path2/path3/my.file.txt
+    echo ${file//dir/path}
+  #+end_src
+
+  #+RESULTS:
+  | /path1/dir2/dir3/my.file.txt   |
+  | /path1/path2/path3/my.file.txt |
+
+- 字符串截断
+  可以过滤掉符合指定规则的字符串,不改变源变量
+  #+begin_src bash
+    file='/dir1/dir2/dir3/my.file.txt'
+    # 拿掉第一个/及其左边的字符串:dir1/dir2/dir3/my.file.txt
+    echo ${file#*/}
+    # 拿掉最后一个/及其左边字符串:my.file.txt
+    echo ${file##*/}
+    # 拿掉最后一个/及其右边的字符串:/dir1/dir2/dir3
+    echo ${file%/*}
+    # 拿掉第一个/及其右边的字符串:空串
+    ${file%%/*}
+  #+end_src 
+
+  #+RESULTS:
+  | dir1/dir2/dir3/my.file.txt |
+  | my.file.txt                |
+  | /dir1/dir2/dir3            |
+
+  记忆方法为:
+  1) #去掉左边,在键盘上#在%左边
+
+  2) %去掉右边,在键盘上%在#右边
+
+  3) 一个符号是最小匹配,两个符号是最大匹配
+** DONE shell脚本中关于运算符是否加空格的语法整理
+CLOSED: [2024-05-29 Wed 14:30]
+:PROPERTIES:
+:EXPORT_FILE_NAME: shell脚本中关于运算符是否加空格的语法整理
+:END:
+:LOGBOOK:
+- State "DONE"       from "TODO"       [2024-05-29 Wed 14:30]
+:END:
+
+*** 目的
+    在编写shell脚本时经常遇到有时候运算符两边要加空格,有时候两边不能加空格,
+    当弄混时经常出现语法错误的问题,因此将遇到的问题梳理归纳起来.
+*** 两边不能加空格:
+    1 赋值时=两边不可加空格:如val = 1,val= 1都是非法的"
+*** 两边要加空格:
+    1 表达式和运算符号之间要加空格: 如val = expr 1 + 1,
+    必须保证+号两边有空格.
+    2 条件表达式在方括号之间要加空格: 如[$a == $b],必须
+    保证==两边要有空格
+    3 if语句,此情况虽然不是两边要加空格,但是if右边需要加
+    空格,如if [a == b]
